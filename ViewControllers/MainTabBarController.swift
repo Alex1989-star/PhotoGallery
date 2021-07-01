@@ -9,31 +9,29 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .gray
+        view.backgroundColor = .white
         
-        let photosVC = PhotosCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let photosVC = PhotosCollectionViewController(collectionViewLayout: WaterfallLayout())
+        
+        let likesVC = LikesCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
         
         viewControllers = [
-            generalNavigationController(rootViewController: photosVC, title: "Photos", image: #imageLiteral(resourceName: "photo.png")),
-            generalNavigationController(rootViewController: ViewController(), title: "Favourites", image: #imageLiteral(resourceName: "wedding-photo.png"))
+            generateNavigationController(rootViewController: photosVC, title: "Photos", image: #imageLiteral(resourceName: "photo")),
+            generateNavigationController(rootViewController: likesVC, title: "Favourites", image: #imageLiteral(resourceName: "wedding-photo"))
         ]
     }
     
-    //MARK: TabBarController Settings
-    
-    private func generalNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
+    private func generateNavigationController(rootViewController: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navigationVC = UINavigationController(rootViewController: rootViewController)
-        
         navigationVC.tabBarItem.title = title
         navigationVC.tabBarItem.image = image
-        
         return navigationVC
     }
 }
+
 
 
 
